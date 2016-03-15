@@ -8,9 +8,9 @@ import React, {
   AppRegistry,
   Component,
   Navigator,
-  Text,
 } from 'react-native';
 import TaskList from './TaskList';
+import TaskForm from './TaskForm';
 
 class PluralTodo extends Component {
     constructor(props, context) {
@@ -29,15 +29,26 @@ class PluralTodo extends Component {
         });
     }
 
+    onCancel() {
+        console.log('cancel clicked');
+        this.nav.pop();
+    }
+
+    onAdd(task) {
+        console.log('a task was added: ', task);
+        this.state.todos.push({ task });
+        this.setState({ todos: this.state.todos });
+        this.nav.pop();
+    }
+
     renderScene(route, nav) {
         switch (route.name) {
         case 'taskform': {
             return (
-                <Text
-                    style={{
-                        paddingTop: 20,
-                    }}
-                >Add form comes here!</Text>
+                <TaskForm
+                    onAdd={this.onAdd.bind(this)}
+                    onCancel={this.onCancel.bind(this)}
+                />
             );
         }
         default: {
@@ -65,7 +76,7 @@ class PluralTodo extends Component {
                 })}
                 renderScene={this.renderScene.bind(this)}
             />
-        )
+        );
     }
 }
 
