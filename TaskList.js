@@ -15,6 +15,20 @@ const styles = {
         flex: 1,
         justifyContent: 'flex-start',
     },
+    button: {
+        height: 60,
+        borderColor: '#05a5d1',
+        borderWidth: 2,
+        backgroundColor: '#333',
+        margin: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    buttonText: {
+        color: '#fafafa',
+        fontSize: 20,
+        fontWeight: '600',
+    },
 };
 
 class TaskList extends Component {
@@ -45,8 +59,11 @@ class TaskList extends Component {
                     renderRow={this.renderRow.bind(this)}
                 />
 
-                <TouchableHighlight>
-                    <Text>Add one</Text>
+                <TouchableHighlight
+                    onPress={this.props.onAddStarted}
+                    style={styles.button}
+                >
+                    <Text style={styles.buttonText}>Add one</Text>
                 </TouchableHighlight>
             </View>
         );
@@ -54,6 +71,7 @@ class TaskList extends Component {
 }
 
 TaskList.propTypes = {
+    onAddStarted: React.PropTypes.func.isRequired,
     todos: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
 };
 
