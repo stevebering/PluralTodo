@@ -1,3 +1,5 @@
+/* eslint-disable react/no-set-state */
+
 import React, {
   Component,
   View,
@@ -6,7 +8,7 @@ import React, {
   Text,
 } from 'react-native';
 
-import TaskRow from './TaskRow';
+import TaskRow from './TaskRow/Component';
 
 const styles = {
     container: {
@@ -54,7 +56,10 @@ class TaskList extends Component {
 
     renderRow(todo) {
         return (
-            <TaskRow todo={todo} />
+            <TaskRow
+                onDone={this.props.onDone}
+                todo={todo}
+            />
         );
     }
 
@@ -80,6 +85,7 @@ class TaskList extends Component {
 
 TaskList.propTypes = {
     onAddStarted: React.PropTypes.func.isRequired,
+    onDone: React.PropTypes.func.isRequired,
     todos: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
 };
 

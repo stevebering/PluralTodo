@@ -2,9 +2,9 @@ import React from 'react-native';
 
 const {
     Component,
-    Text,
-    View,
 } = React;
+
+import Render from './Render';
 
 const styles = {
     container: {
@@ -23,21 +23,25 @@ const styles = {
         fontSize: 20,
         fontWeight: '300',
     },
+    doneButton: {
+        borderRadius: 5,
+        backgroundColor: '#eaeaea',
+        padding: 8,
+    },
 };
 
 class TaskRow extends Component {
+    onDonePressed() {
+        this.props.onDone(this.props.todo);
+    }
+
     render() {
-        return (
-            <View style={styles.container}>
-                <Text style={styles.label}>
-                    {this.props.todo.task}
-                </Text>
-            </View>
-        );
+        return Render.bind(this)(styles);
     }
 }
 
 TaskRow.propTypes = {
+    onDone: React.PropTypes.func.isRequired,
     todo: React.PropTypes.shape({
         task: React.PropTypes.string.isRequired,
     }).isRequired,
