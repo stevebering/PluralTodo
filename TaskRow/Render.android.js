@@ -40,7 +40,7 @@ export default function render(styles) {
     return (
         <Animated.View style={[styles.container, localStyle.row]}>
             <Text style={styles.label}>
-                and: {this.props.todo.task}
+                {this.props.todo.task}
             </Text>
 
             <TouchableHighlight

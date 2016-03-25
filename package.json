@@ -7,7 +7,8 @@
   },
   "dependencies": {
     "react-native": "^0.21.0",
-    "react-native-swipeout": "2.0.12"
+    "react-native-swipeout": "2.0.12",
+    "redux": "^3.3.1"
   },
   "devDependencies": {
     "babel-eslint": "^5.0.0",

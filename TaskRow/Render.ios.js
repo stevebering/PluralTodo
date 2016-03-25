@@ -36,7 +36,7 @@ export default function render(baseStyle) {
             >
                 <View style={[baseStyle.container, localStyle.row]}>
                     <Text style={baseStyle.label}>
-                        ios: {this.props.todo.task}
+                        {this.props.todo.task}
                     </Text>
                 </View>
             </Swipeout>
