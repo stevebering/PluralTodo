@@ -36,8 +36,6 @@ class PluralTodo extends Component {
 
     onAdd(task) {
         console.log('a task was added: ', task);
-        // this.state.todos.push({ task });
-        // this.setState({ todos: this.state.todos });
         store.dispatch({
             type: 'ADD_TODO',
             task,
@@ -47,12 +45,17 @@ class PluralTodo extends Component {
 
     onDone(todo) {
         console.log('todo was completed: ', todo);
-        const filteredTodos =
-            this.state.todos.filter((filterTodo) =>
-                filterTodo !== todo
-            );
+        store.dispatch({
+            type: 'DONE_TODO',
+            todo,
+        });
+    }
 
-        this.setState({ todos: filteredTodos });
+    onToggle() {
+        console.log('toggle was toggled: ', this.state.filter);
+        store.dispatch({
+            type: 'TOGGLE_STATE',
+        });
     }
 
     renderScene(route, nav) {
@@ -68,8 +71,10 @@ class PluralTodo extends Component {
         default: {
             return (
                 <TaskList
+                    filter={this.state.filter}
                     onAddStarted={this.onAddStarted.bind(this)}
                     onDone={this.onDone.bind(this)}
+                    onToggle={this.onToggle.bind(this)}
                     todos={this.state.todos}
                 />
             );
